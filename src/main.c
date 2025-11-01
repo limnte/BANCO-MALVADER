@@ -45,4 +45,5 @@ int main(void){
 
 //pra compilar com todos os arquivos, use: Ctrl + j e escreva make lembre-se de baixar o https://sourceforge.net/projects/gnuwin32 se ainda não tiver o make instalado.
 //depois de intalar o gnuwin, coloque o caminho do bin do gnuwin (geralmente C:\Program Files (x86)\GnuWin32\bin) na "variavel de ambiente" PATH do windows.
+//o vscode vai pedir pra baixar a extensão "Makefile Tools", baixe ela pra facilitar a compilação com make no vscode.
 //para rodar o programa, use: Ctrl + j e escreva programa.exe ou va no diretorio no seu explorador de arquivos e clique duas vezes no programa.exe
