@@ -3,10 +3,10 @@
 
 typedef struct{
     char Nome[20];
-	char Sobrenome[20];
+	char Sobrenome[60];
 	char Endereco[60];
 	char Cidade[20];
-	char Cpf[20];
+	char Cpf[12];
 	char Senha[10];
 	char Agencia[10];
 	int Dia;

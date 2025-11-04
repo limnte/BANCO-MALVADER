@@ -6,15 +6,17 @@
 #define arquivo_movimentos "data/movimentos.txt"
 #include "menus/menu.h"
 #include "clientes/io.h"
+#include "clientes/verificacao.h"
 Conta nova[200]; //declaração do vetor global de contas
 int total_contas = 0; //declaração da variavel global de total de contas
+int i_contalogada = -1; //variavel global que guarda o indice da conta logada, -1 = ninguem estiver logado
 
 //quando forem mudar alguma coisa, deixem organizado, por favor...
 //Deixe o mais modular possível e quando for criar variaves/funçoes/registros, use nomes faceis de entender.
 //atenção nas instruções de cada função, para evitar bugs futuros. e olhem a pagina 5 e 6 do documento do trabalho.
 //Quando mudarem alguma coisa, comentem o que foi mudado e coloque seu nome. ESPECIALMENTE SE CRIAR PASTAS NOVAS
 
-int main(void){
+void loop_menu_principal(){
     setlocale(LC_ALL, "pt_BR.UTF-8");
     int op;
 
@@ -42,6 +44,40 @@ int main(void){
         }
 
     }while(op != 0);
+}
+
+int main(){
+    int op_inicial;
+
+    ler_contas(nova, &total_contas);//carrega as contas ao inciar o programa
+    
+    do{
+        limpar_tela();
+        header();
+        op_inicial = menu_inicial();
+
+        switch(op_inicial){
+            case 1:
+                i_contalogada = fazer_login(nova, total_contas);
+
+                if(i_contalogada != -1){
+                    printf("Login realizado com sucesso! Bem-vindo, %s.\n", nova[i_contalogada].Nome);
+                    system("pause");
+                    loop_menu_principal();
+                }
+                break;
+            case 2:
+                criar_conta(nova, &total_contas);
+                system("pause");
+                break;
+            case 0:
+                printf("Saindo do programa...\n");
+                exit(1);
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+                system("pause");
+        }
+    }while(op_inicial != 0);
 
     return 0;
 }

@@ -5,10 +5,9 @@
 
 int menu_gerenciar() {
     int op;
-    printf("\n1 - Abrir conta\n");
-    printf("2 - Excluir conta\n");
-    printf("3 - Alterar dados\n");
-    printf("4 - Consultar dados\n");
+    printf("\n1 - Excluir conta\n");
+    printf("2 - Alterar dados\n");
+    printf("3 - Consultar dados\n");
     printf("0 - Voltar\n");
     printf("Escolha: ");
     scanf("%d", &op);
@@ -24,10 +23,10 @@ void submenu_gerenciar() {
         header();
         op = menu_gerenciar();
         switch (op) {
-            case 1: criar_conta(nova, &total_contas); break;
-            case 2: printf(">>> Excluindo conta...\n"); break;
-            case 3: printf(">>> Alterando dados...\n"); break;
-            case 4: printf(">>> Consultando dados...\n"); break;
+            //case 1: criar_conta(nova, &total_contas); break;
+            case 1: printf(">>> Excluindo conta...\n"); break;
+            case 2: printf(">>> Alterando dados...\n"); break;
+            case 3: printf(">>> Consultando dados...\n"); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }

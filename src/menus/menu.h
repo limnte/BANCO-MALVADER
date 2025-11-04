@@ -3,6 +3,9 @@
 
 void limpar_tela();
 void header();
+void limpar_buffer_entrada();
+
+int menu_inicial();
 
 int menu_principal();
 int menu_gerenciar();

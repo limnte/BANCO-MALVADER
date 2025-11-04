@@ -13,7 +13,7 @@ void salvar_contas_sem_arquivo(Conta *nova){
         exit(1);
     }
 
-    fprintf(fbancoucb,  "%s %s %d %d %d %s %s %s %d %s %s %d\n",
+    fprintf(fbancoucb,  "%s|%s|%d|%d|%d|%s|%s|%s|%d|%s|%s|%d\n",
 		nova->Nome,
 		nova->Sobrenome,
 		nova->Dia,

@@ -9,12 +9,13 @@ void ler_contas(Conta nova[], int *total_contas){
 
     if(fbancoucb == NULL){
         printf("Erro ao abrir o arquivo de contas:Arquivo não encontrado.\n");
-        system("pause");
         getchar();
-        exit(1);
+        return;
     }
 
-    while(fscanf(fbancoucb, "%s %s %d %d %d %s %s %s %d %s %s %d\n",
+
+    //As strings estão sendo lidas com %[^|] para ler até o caractere '|', evitar problemas com espaços e garbage data  kswk
+    while(fscanf(fbancoucb, "%[^|]|%[^|]|%d|%d|%d|%[^|]|%[^|]|%[^|]|%d|%[^|]|%[^|]|%d\n",
 		nova[*total_contas].Nome,
 		nova[*total_contas].Sobrenome,
 		&nova[*total_contas].Dia,
@@ -26,7 +27,7 @@ void ler_contas(Conta nova[], int *total_contas){
 		&nova[*total_contas].Numerodacasa,
 		nova[*total_contas].Senha,
 		nova[*total_contas].Agencia,
-		&nova[*total_contas].Conta)==13)
+		&nova[*total_contas].Conta)==12)
 	{
 	(*total_contas)++;
 	}
