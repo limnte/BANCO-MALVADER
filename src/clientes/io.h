@@ -15,13 +15,16 @@ typedef struct{
 	int Conta;
 	int Cep;
 	int Numerodacasa;
+	double Saldo;
 }Conta;
 
 extern Conta nova[200];
 extern int total_contas;
+extern int i_contalogada;
 
 void criar_conta(Conta *nova, int *total_contas);
 void ler_contas(Conta *nova, int *total_contas);
 void salvar_contas_sem_arquivo(Conta *nova);
+void salvar_todas_contas(Conta nova[], int total_contas);
 
 #endif

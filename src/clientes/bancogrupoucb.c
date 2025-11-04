@@ -94,6 +94,8 @@ void criar_conta(Conta nova[], int *total_contas){
 
     }while(resposta == 0);
 
+    conta_atual -> Saldo = 0.0;
+    
     salvar_contas_sem_arquivo(conta_atual);	
     (*total_contas)++;
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "operacoes/operacoes.h"
 
 int menu_consultas() {
     int op;
@@ -23,7 +24,7 @@ void submenu_consultas() {
         header();
         op = menu_consultas();
         switch (op) {
-            case 1: printf(">>> Consultando saldo...\n"); break;
+            case 1: ver_saldo(); break;
             case 2: printf(">>> Consultando dados...\n"); break;
             case 3: printf(">>> Listando por nome...\n"); break;
             case 4: printf(">>> Listando por conta...\n"); break;

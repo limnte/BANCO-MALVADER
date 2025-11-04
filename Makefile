@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -I./src -I./src/menus -I./src/clientes
-SRC = $(wildcard src/*.c src/menus/*.c src/clientes/*.c)
+CFLAGS = -Wall -I./src -I./src/menus -I./src/clientes -I./src/operacoes
+SRC = $(wildcard src/*.c src/menus/*.c src/clientes/*.c src/operacoes/*.c)
 OBJ = $(SRC:.c=.o)
 EXEC = programa
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "operacoes/operacoes.h"
 
 int menu_operacoes() {
     int op;
@@ -21,8 +22,8 @@ void submenu_operacoes() {
         header();
         op = menu_operacoes();
         switch (op) {
-            case 1: printf(">>> Realizando depósito...\n"); break;
-            case 2: printf(">>> Realizando saque...\n"); break;
+            case 1: fazer_deposito(); break;
+            case 2: fazer_saque(); break;
             case 3: printf(">>> Realizando transferência...\n"); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
