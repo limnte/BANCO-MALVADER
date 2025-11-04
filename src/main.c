@@ -5,6 +5,9 @@
 #define arquivo_clientes "data/clientes.txt"
 #define arquivo_movimentos "data/movimentos.txt"
 #include "menus/menu.h"
+#include "clientes/io.h"
+Conta nova[200]; //declaração do vetor global de contas
+int total_contas = 0; //declaração da variavel global de total de contas
 
 //quando forem mudar alguma coisa, deixem organizado, por favor...
 //Deixe o mais modular possível e quando for criar variaves/funçoes/registros, use nomes faceis de entender.

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "clientes/io.h"
 
 int menu_gerenciar() {
     int op;
@@ -23,7 +24,7 @@ void submenu_gerenciar() {
         header();
         op = menu_gerenciar();
         switch (op) {
-            case 1: printf(">>> Abrindo nova conta...\n"); break;
+            case 1: criar_conta(nova, &total_contas); break;
             case 2: printf(">>> Excluindo conta...\n"); break;
             case 3: printf(">>> Alterando dados...\n"); break;
             case 4: printf(">>> Consultando dados...\n"); break;
