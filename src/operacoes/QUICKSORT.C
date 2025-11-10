@@ -42,7 +42,7 @@ static int nome(Cliente vet[], int low, int high){
     }
 
     trocar(&vet[i], &vet[high]);
-    return 1;
+    return i;
 }
 
 void quicksort(Cliente vet[],int low,int high){
@@ -52,4 +52,5 @@ void quicksort(Cliente vet[],int low,int high){
         quicksort(vet, pi + 1, high); 
     }
 }
+
 
