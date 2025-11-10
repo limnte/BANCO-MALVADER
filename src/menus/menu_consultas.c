@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "operacoes/operacoes.h"
-#include "QUICKSORT.C"
+#include "operacoes/QUICKSORT.C"
 
 int menu_consultas() {
     int op;
