@@ -12,7 +12,7 @@ static int conta(Cliente vet[], int low, int high){
     int i = low;
 
     for(int j = low; j < high; j++){
-        if(strcmp(vet[j].conta, pi.conta) <= 0){
+        if(strcmp(vet[j].Conta, pi.Conta) <= 0){
             trocar(&vet[i], &vet[j]);
             i++;
         }
@@ -35,7 +35,7 @@ static int nome(Cliente vet[], int low, int high){
     int i = low;
 
     for(int j = low; j < high; j++){
-        if(strcmp(vet[j].nome, pi.nome) <= 0){
+        if(strcmp(vet[j].Nome, pi.Nome) <= 0){
             trocar(&vet[i], &vet[j]);
             i++;
         }
@@ -52,3 +52,4 @@ void quicksort(Cliente vet[],int low,int high){
         quicksort(vet, pi + 1, high); 
     }
 }
+
