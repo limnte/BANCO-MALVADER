@@ -1,4 +1,4 @@
-#include "QUICKSORT.H.cpp"
+#include "QUICKSORT.H"
 #include <string.h>
 
 static void trocar(Cliente* a, Cliente* b){ 
@@ -29,3 +29,4 @@ void quicksort(Cliente vet[],int low,int high){
         quicksort(vet, pi + 1, high); 
     }
 }
+
