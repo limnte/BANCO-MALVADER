@@ -2,21 +2,21 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "operacoes/operacoes.h"
-#include "operacoes/QUICKSORT.C"
+#include "gerenciamento/gerenciamento.h"
 
 int menu_consultas() {
     int op;
     printf("\n1 - Consultar saldo\n");
     printf("2 - Consultar dados\n");
-    printf("3 - Listar por nome\n");
-    printf("4 - Listar por conta\n");
+    printf("3 - Listar contas por nome\n");
+    printf("4 - Listar por numero da conta\n");
+    printf("5 - Extrato\n");
     printf("0 - Voltar\n");
     printf("Escolha: ");
     scanf("%d", &op);
+    limpar_buffer_entrada();
     return op;
 }
-
-//placeholder pras funções de consultas, coloca as funções na case basicamente
 
 void submenu_consultas() {
     int op;
@@ -26,9 +26,10 @@ void submenu_consultas() {
         op = menu_consultas();
         switch (op) {
             case 1: ver_saldo(); break;
-            case 2: printf(">>> Consultando dados...\n"); break;
-            case 3: printf(">>> Listando por nome...\n"); break;
-            case 4: printf(">>> Listando por conta...\n"); break;
+            case 2: consultar_dados(); break;
+            case 3: listar_contas_por_nome(); break;
+            case 4: listar_contas_por_conta(); break;
+            case 5: printf(">>> consultando ultimas 5 operações...\n"); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }

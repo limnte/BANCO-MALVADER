@@ -15,7 +15,7 @@ void salvar_contas_sem_arquivo(Conta *nova){
         exit(1);
     }
 
-    fprintf(fbancoucb,  "%s|%s|%d|%d|%d|%s|%s|%s|%d|%s|%s|%d|%lf\n",
+    fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%d|%s|%s|%d|%lf\n",
 		nova->Nome,
 		nova->Sobrenome,
 		nova->Dia,
@@ -25,6 +25,7 @@ void salvar_contas_sem_arquivo(Conta *nova){
 		nova->Endereco,
 		nova->Cidade,
 		nova->Numerodacasa,
+		nova->Cep,
 		nova->Senha,
 		nova->Agencia,
 		nova->Conta,
@@ -46,7 +47,7 @@ void salvar_todas_contas(Conta nova[], int total_contas){
 
 	//loop nas contas da memoria e salvar elas e pah
 	for(int i = 0; i < total_contas; i++){
-		fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%s|%s|%d|%lf\n",
+		fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%d|%s|%s|%d|%lf\n",
 			nova[i].Nome,
 			nova[i].Sobrenome,
 			nova[i].Dia,
@@ -56,6 +57,7 @@ void salvar_todas_contas(Conta nova[], int total_contas){
 			nova[i].Endereco,
 			nova[i].Cidade,
 			nova[i].Numerodacasa,
+			nova[i].Cep,
 			nova[i].Senha,
 			nova[i].Agencia,
 			nova[i].Conta,

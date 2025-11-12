@@ -36,12 +36,15 @@ void loop_menu_principal(){
                 submenu_operacoes();
                 break;
             case 0:
-                printf("Saindo do programa...\n");
+                printf("Fazendo logout...\n");
+                i_contalogada = -1;
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
                 system("pause");
         }
+
+        if (i_contalogada == -1) op = 0;
 
     }while(op != 0);
 }

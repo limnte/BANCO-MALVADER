@@ -4,6 +4,8 @@
 #include "clientes/io.h"
 #include "menus/menu.h"
 #include <locale.h>
+#include <string.h>
+
 
 void ver_saldo(){
     //o i_contalogada é util aqui pq ele da um "codigo" unico pra cada conta criada
@@ -57,54 +59,80 @@ void fazer_saque(){
 
     printf("\nSaque de R$%.2lf realizado com sucesso.\n", valor_saque);
 }
+
 void fazer_transferencia(){
-    int conta_destino = 0;
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    
+    char cpf_destino[12];
     double valor = 0.0;
+    int ind_dest = -1;
+    int confirmar;
+
     printf("\n====== TRANSFERÊNCIA ======\n");
-    printf("Digite o número da conta de destino: ");
-    if (scanf("%d", &conta_destino) != 1) {
-        printf("Entrada inválida.\n");
-        // limpar buffer
-        int ch; while ((ch = getchar()) != '\n' && ch != EOF);
-        return;
-    }
-    if (conta_destino == nova[i_contalogada].Conta) {
+
+    printf("Digite o CPF da conta de destino(apenas numeros): ");
+    scanf("%11s", cpf_destino);
+    limpar_buffer_entrada();
+
+    if(strcmp(nova[i_contalogada].Cpf, cpf_destino) == 0){
         printf("Erro: não é possível transferir para a mesma conta.\n");
         return;
     }
-    printf("Digite o valor a ser transferido: R$ ");
-    if (scanf("%lf", &valor) != 1) {
-        printf("Entrada inválida.\n");
-        int ch; while ((ch = getchar()) != '\n' && ch != EOF);
-        return;
-    }
-    if (valor <= 0.0) {
-        printf("Erro: valor inválido.\n");
-        return;
-    }
-    if (valor > nova[i_contalogada].Saldo) {
-        printf("Erro: saldo insuficiente.\n");
-        return;
-    }
 
-    // procurar conta destino
-    int idx_dest = -1;
-    for (int i = 0; i < total_contas; i++) {
-        if (nova[i].Conta == conta_destino) {
-            idx_dest = i;
+    //procurando a conta de destino pelo cpf
+    for(int i = 0; i < total_contas; i++){
+        if(strcmp(nova[i].Cpf, cpf_destino) == 0){
+            ind_dest = i; //Encontrou o destinatario
             break;
         }
     }
-    if (idx_dest == -1) {
-        printf("Erro: conta de destino não encontrada.\n");
+
+    if(ind_dest == -1){
+        printf("Erro: CPF de destino não encontrado.\n");
         return;
     }
 
-    // executar transferência
-    nova[i_contalogada].Saldo -= valor;
-    nova[idx_dest].Saldo += valor;
+    //validar valor de transferencia
 
-    salvar_todas_contas(nova, total_contas);
+    printf("Digite o valor a ser transferido: R$");
+    if (scanf("%lf", &valor) != 1) {
+        printf("Entrada invalida.\n");
+        limpar_buffer_entrada();
+        return;
+    }
+    limpar_buffer_entrada();
 
-    printf("Transferência de R$%.2lf para a conta %d realizada com sucesso.\n", valor, conta_destino);
+    if(valor <= 0.1){
+        printf("Erro: Valor inválido!.\n");
+        return;
+    }
+
+    if(valor>nova[i_contalogada].Saldo){
+        printf("Erro: Saldo insuficiente.\n");
+        return;
+    }
+
+    // confirmar conta de destino:
+    Conta* destino = &nova[ind_dest];
+
+    printf("\n====== Confirmar transferência ======\n");
+    printf("Valor: R$%.2lf\n", valor);
+    printf("Para: %s %s\n",destino->Nome, destino->Sobrenome);
+    printf("CPF: %s\n",destino->Cpf);
+    printf("\nConfirmar?(sim=1/Cancelar=0): ");
+    scanf("%d",&confirmar);
+    limpar_buffer_entrada();
+
+    if(confirmar == 1){
+        nova[i_contalogada].Saldo -= valor;
+        nova[ind_dest].Saldo += valor;
+
+        salvar_todas_contas(nova, total_contas);
+
+        printf("\nTransferencia realizada com sucesso!");
+    }else{
+        printf("\nTransferencia cancelada.\n");
+    }
+
+
 }

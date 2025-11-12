@@ -31,6 +31,7 @@ int menu_inicial(){
     printf("0 - Sair\n");
     printf("Escolha: ");
     scanf("%d", &op);
+    limpar_buffer_entrada();
     return op;
 }
 
@@ -43,5 +44,6 @@ int menu_principal() {
     printf("0 - Sair\n");
     printf("Escolha: ");
     scanf("%d", &op);
+    limpar_buffer_entrada();
     return op;
 }

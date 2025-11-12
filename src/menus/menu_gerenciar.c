@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "clientes/io.h"
+#include "gerenciamento/gerenciamento.h"
 
 int menu_gerenciar() {
     int op;
     printf("\n1 - Excluir conta\n");
     printf("2 - Alterar dados\n");
-    printf("3 - Consultar dados\n");
     printf("0 - Voltar\n");
     printf("Escolha: ");
     scanf("%d", &op);
+    limpar_buffer_entrada();
     return op;
 }
 
@@ -23,10 +24,8 @@ void submenu_gerenciar() {
         header();
         op = menu_gerenciar();
         switch (op) {
-            //case 1: criar_conta(nova, &total_contas); break;
-            case 1: printf(">>> Excluindo conta...\n"); break;
-            case 2: printf(">>> Alterando dados...\n"); break;
-            case 3: printf(">>> Consultando dados...\n"); break;
+            case 1: excluir_conta(); if(i_contalogada == -1) op = 0; break;
+            case 2: alterar_dados(); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }

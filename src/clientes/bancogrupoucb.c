@@ -65,6 +65,10 @@ void criar_conta(Conta nova[], int *total_contas){
         scanf("%d", &conta_atual -> Numerodacasa);
         limpar_buffer_entrada();
 
+        printf("CEP(Somente numeros): ");
+        scanf("%d",&conta_atual -> Cep);
+        limpar_buffer_entrada();
+
         //dados da conta
         printf("Senha (maximo 9 caracteres, sem espaços): ");
         scanf("%9s", conta_atual -> Senha);

@@ -11,6 +11,7 @@ int menu_operacoes() {
     printf("0 - Voltar\n");
     printf("Escolha: ");
     scanf("%d", &op);
+    limpar_buffer_entrada();
     return op;
 }
 
@@ -24,7 +25,7 @@ void submenu_operacoes() {
         switch (op) {
             case 1: fazer_deposito(); break;
             case 2: fazer_saque(); break;
-            case 3: printf(">>> Realizando transferência...\n"); break;
+            case 3: fazer_transferencia(); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }
