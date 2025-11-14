@@ -33,6 +33,9 @@ void fazer_deposito(){
 
     printf("\nDeposito de R$%.2lf realizado com sucesso.\n", valor_deposito);
 
+    //salvando deposito para o extrato
+    salvar_operacao(nova[i_contalogada].Cpf, "DEPOSITO", valor_deposito);
+
 }
 
 void fazer_saque(){
@@ -58,6 +61,9 @@ void fazer_saque(){
     salvar_todas_contas(nova, total_contas);
 
     printf("\nSaque de R$%.2lf realizado com sucesso.\n", valor_saque);
+
+    //salvando saque para o extrato
+    salvar_operacao(nova[i_contalogada].Cpf, "SAQUE", valor_saque);
 }
 
 void fazer_transferencia(){
@@ -134,5 +140,7 @@ void fazer_transferencia(){
         printf("\nTransferencia cancelada.\n");
     }
 
-
+    //salvando o sistema de transferencia para o extrato
+    salvar_operacao(nova[i_contalogada].Cpf, "TRANSFERENCIA", valor);
+    salvar_operacao(nova[ind_dest].Cpf, "RECEBIMENTO", valor);
 }

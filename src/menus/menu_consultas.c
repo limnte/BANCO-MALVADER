@@ -29,7 +29,7 @@ void submenu_consultas() {
             case 2: consultar_dados(); break;
             case 3: listar_contas_por_nome(); break;
             case 4: listar_contas_por_conta(); break;
-            case 5: printf(">>> consultando ultimas 5 operações...\n"); break;
+            case 5: mostrar_extrato(); break;
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }

@@ -1,2 +1,3 @@
 Gabe|Lim|19|9|2005|05796179128|Lima pinheiro|Aguas claras norte|12|71920640|Erva|0001|12345|2500,000000
 Lucas|Naunn|23|3|2007|00029377197|Sudao|Taguatinga|15|71540720|Lucao|0001|45678|2500,000000
+Eduardo|Maciel Rodrigues portela|18|8|2006|09323234133|Rua corinthians|S�o Paulo|38|71010340|123|0001|12346|87,500000

@@ -7,6 +7,7 @@
 #include <locale.h>
 #include <string.h>
 #include "operacoes/quicksort.h"
+#include <time.h>
 
 void consultar_dados(){
     setlocale(LC_ALL, "pt_BR.UTF-8");
@@ -169,4 +170,66 @@ void listar_contas_por_conta() {
                copia_contas[i].Nome);
     }
     printf("----------------------------------------------\n");
+}
+void salvar_operacao(const char *cpf, const char *tipo, double valor) {
+    char caminho[200];
+    sprintf(caminho, "data/op_%s.bin", cpf);
+
+    FILE *fp = fopen(caminho, "ab");
+    if (!fp) {
+        printf("Erro ao abrir arquivo de operações.\n");
+        return;
+    }
+
+    Operacao op;
+    strcpy(op.tipo, tipo);
+    op.valor = valor;
+
+    // gerar data e hora
+    time_t agora = time(NULL);
+    struct tm *t = localtime(&agora);
+    strftime(op.data, sizeof(op.data), "%d/%m/%Y %H:%M", t);
+
+    fwrite(&op, sizeof(Operacao), 1, fp);
+    fclose(fp);
+}
+void mostrar_extrato() {
+    const char *cpf = nova[i_contalogada].Cpf;
+
+
+    char caminho[200];
+    sprintf(caminho, "data/op_%s.bin", cpf);
+
+    FILE *fp = fopen(caminho, "rb");
+    if (!fp) {
+        printf("\nNenhuma operação encontrada.\n");
+        return;
+    }
+
+    Operacao ops[500];
+    int total = 0;
+
+    while (fread(&ops[total], sizeof(Operacao), 1, fp) == 1) {
+        total++;
+    }
+    fclose(fp);
+
+    if (total == 0) {
+        printf("\nNenhuma operação registrada.\n");
+        return;
+    }
+
+    printf("\n===== EXTRATO (Últimas 5 operações) =====\n");
+
+    int inicio = (total > 5 ? total - 5 : 0);
+
+    for (int i = inicio; i < total; i++) {
+        printf("%s | %-14s | R$ %.2lf\n",
+            ops[i].data,
+            ops[i].tipo,
+            ops[i].valor
+        );
+    }
+
+    printf("==========================================\n");
 }
