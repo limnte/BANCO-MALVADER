@@ -5,6 +5,7 @@
 #include "menus/menu.h"
 #include <locale.h>
 #include <string.h>
+#include "gerenciamento/gerenciamento.h"
 
 
 void ver_saldo(){
@@ -124,7 +125,7 @@ void fazer_transferencia(){
     printf("\n====== Confirmar transferência ======\n");
     printf("Valor: R$%.2lf\n", valor);
     printf("Para: %s %s\n",destino->Nome, destino->Sobrenome);
-    printf("CPF: %s\n",destino->Cpf);
+    printf("CPF: %.3s.%.3s.%.3s-%.2s\n", destino->Cpf, destino->Cpf+3, destino->Cpf+6, destino->Cpf+9);
     printf("\nConfirmar?(sim=1/Cancelar=0): ");
     scanf("%d",&confirmar);
     limpar_buffer_entrada();
@@ -136,11 +137,12 @@ void fazer_transferencia(){
         salvar_todas_contas(nova, total_contas);
 
         printf("\nTransferencia realizada com sucesso!");
+        salvar_operacao(nova[i_contalogada].Cpf, "TRANSFERENCIA", valor);
+        salvar_operacao(nova[ind_dest].Cpf, "RECEBIMENTO", valor);
     }else{
         printf("\nTransferencia cancelada.\n");
     }
 
-    //salvando o sistema de transferencia para o extrato
-    salvar_operacao(nova[i_contalogada].Cpf, "TRANSFERENCIA", valor);
-    salvar_operacao(nova[ind_dest].Cpf, "RECEBIMENTO", valor);
+    
+    
 }

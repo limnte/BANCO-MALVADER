@@ -29,7 +29,7 @@ int fazer_login(const Conta nova[], int total_contas){
 
     printf("\n=== Login ===\n");
     printf("CPF (Apenas numeros): ");
-    scanf("%19s", cpf_tentativa);
+    scanf("%11s", cpf_tentativa);
     limpar_buffer_entrada();
 
     printf("Senha: ");
@@ -44,7 +44,7 @@ int fazer_login(const Conta nova[], int total_contas){
     }
 
     printf("\nCPF ou senha incorretos.\n");
-    system("Pause");
+    pausar_tela();
     
     return -1; // Login falhou
 }

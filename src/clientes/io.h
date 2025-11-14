@@ -13,7 +13,7 @@ typedef struct{
 	int Mes;
 	int Ano;
 	int Conta;
-	int Cep;
+	char Cep[9];
 	int Numerodacasa;
 	double Saldo;
 }Conta;

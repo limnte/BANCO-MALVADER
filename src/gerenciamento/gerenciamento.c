@@ -8,6 +8,16 @@
 #include <string.h>
 #include "operacoes/quicksort.h"
 #include <time.h>
+#include <ctype.h>
+
+static int tudo_digito(const char* str){
+    for(int i = 0; str[i]!= '\0'; i++){
+        if(!isdigit(str[i])){
+            return 0; //Se econtrar algo que não é digito numerico, retorna falso
+        }
+    }
+    return 1;
+}
 
 void consultar_dados(){
     setlocale(LC_ALL, "pt_BR.UTF-8");
@@ -15,7 +25,7 @@ void consultar_dados(){
 
     printf("\n====== Consulta de dados =======\n");   
     printf("Nome: %s %s\n", logada->Nome, logada->Sobrenome);
-    printf("CPF: %s\n", logada->Cpf);
+    printf("CPF: %.3s.%.3s.%.3s-%.2s\n", logada->Cpf, logada->Cpf+3, logada->Cpf+6,logada->Cpf+9); //mostrar o cpf formatodo
     printf("Data de nascimento: %02d/%02d/%02d\n", logada->Dia, logada->Mes, logada->Ano);
     printf("Conta: %s-%d\n", logada ->Agencia, logada->Conta);
 
@@ -23,7 +33,7 @@ void consultar_dados(){
     printf("Endereço: %s\n", logada->Endereco);
     printf("Numero: %d\n", logada->Numerodacasa);
     printf("Cidade: %s\n", logada->Cidade);
-    printf("CEP: %d\n", logada->Cep);
+    printf("CEP: %.5s-%.3s\n", logada->Cep, logada -> Cep + 5);//mostra o cep formatado
 }
 
 void alterar_dados(){
@@ -31,6 +41,8 @@ void alterar_dados(){
     Conta *logada = &nova[i_contalogada];
     int op;
     int dados_alterados = 0; //flag
+    char buffer_temp[30];
+    int cep_invalido;
 
     do{
         limpar_tela();
@@ -59,9 +71,22 @@ void alterar_dados(){
                 scanf(" %19[^\n]",logada->Cidade);
                 limpar_buffer_entrada();
 
-                printf("\nCEP: ");
-                scanf("%d",&logada->Cep);
-                limpar_buffer_entrada();
+                do{
+                    printf("\nCEP(somente 8 numeros): ");
+                    scanf(" %8s", buffer_temp);
+                    limpar_buffer_entrada();
+
+                    if(strlen(buffer_temp) != 8 || !tudo_digito(buffer_temp)){
+                        printf("Erro: O CEP deve conter 8 digitos. Tente novamente!");
+                        cep_invalido = 1;
+                    }else{
+                        cep_invalido = 0;
+                        strcpy(logada->Cep, buffer_temp); //salva o Cep valido na conta logada.
+                    }
+
+
+                }while(cep_invalido);
+                
 
                 dados_alterados = 1;
                 break;
@@ -171,6 +196,7 @@ void listar_contas_por_conta() {
     }
     printf("----------------------------------------------\n");
 }
+
 void salvar_operacao(const char *cpf, const char *tipo, double valor) {
     char caminho[200];
     sprintf(caminho, "data/op_%s.bin", cpf);
@@ -193,6 +219,7 @@ void salvar_operacao(const char *cpf, const char *tipo, double valor) {
     fwrite(&op, sizeof(Operacao), 1, fp);
     fclose(fp);
 }
+
 void mostrar_extrato() {
     const char *cpf = nova[i_contalogada].Cpf;
 

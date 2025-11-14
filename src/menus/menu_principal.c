@@ -13,6 +13,12 @@ void limpar_buffer_entrada() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+void pausar_tela(){
+    //já que o system pause não funciona em mac
+    printf("\nPressione Enter para continuar...");
+    limpar_buffer_entrada();//A função de limpar espera pelo enter, então "pausa"
+}
+
 void header(){
     printf("===========================================================================\n");
     printf("  ____                          __  __       _                _           \n");

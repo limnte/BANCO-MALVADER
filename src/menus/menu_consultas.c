@@ -33,6 +33,6 @@ void submenu_consultas() {
             case 0: printf("Voltando ao menu principal...\n"); break;
             default: printf("Opção inválida!\n");
         }
-        if (op != 0) system("pause");
+        if (op != 0) pausar_tela();
     } while (op != 0);
 }

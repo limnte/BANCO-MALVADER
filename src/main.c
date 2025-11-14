@@ -11,10 +11,6 @@ Conta nova[200]; //declaração do vetor global de contas
 int total_contas = 0; //declaração da variavel global de total de contas
 int i_contalogada = -1; //variavel global que guarda o indice da conta logada, -1 = ninguem estiver logado
 
-//quando forem mudar alguma coisa, deixem organizado, por favor...
-//Deixe o mais modular possível e quando for criar variaves/funçoes/registros, use nomes faceis de entender.
-//atenção nas instruções de cada função, para evitar bugs futuros. e olhem a pagina 5 e 6 do documento do trabalho.
-//Quando mudarem alguma coisa, comentem o que foi mudado e coloque seu nome. ESPECIALMENTE SE CRIAR PASTAS NOVAS
 
 void loop_menu_principal(){
     setlocale(LC_ALL, "pt_BR.UTF-8");
@@ -41,7 +37,7 @@ void loop_menu_principal(){
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
-                system("pause");
+                pausar_tela();
         }
 
         if (i_contalogada == -1) op = 0;
@@ -65,27 +61,23 @@ int main(){
 
                 if(i_contalogada != -1){
                     printf("Login realizado com sucesso! Bem-vindo, %s.\n", nova[i_contalogada].Nome);
-                    system("pause");
+                    pausar_tela();
                     loop_menu_principal();
                 }
                 break;
             case 2:
                 criar_conta(nova, &total_contas);
-                system("pause");
+                pausar_tela();
                 break;
             case 0:
                 printf("Saindo do programa...\n");
                 exit(1);
             default:
                 printf("Opcao invalida! Tente novamente.\n");
-                system("pause");
+                pausar_tela();
         }
     }while(op_inicial != 0);
 
     return 0;
 }
 
-//pra compilar com todos os arquivos, use: Ctrl + j e escreva make lembre-se de baixar o https://sourceforge.net/projects/gnuwin32 se ainda não tiver o make instalado.
-//depois de intalar o gnuwin, coloque o caminho do bin do gnuwin (geralmente C:\Program Files (x86)\GnuWin32\bin) na "variavel de ambiente" PATH do windows.
-//o vscode vai pedir pra baixar a extensão "Makefile Tools", baixe ela pra facilitar a compilação com make no vscode.
-//para rodar o programa, use: Ctrl + j e escreva programa.exe ou va no diretorio no seu explorador de arquivos e clique duas vezes no programa.exe

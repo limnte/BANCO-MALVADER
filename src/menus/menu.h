@@ -4,6 +4,7 @@
 void limpar_tela();
 void header();
 void limpar_buffer_entrada();
+void pausar_tela();
 
 int menu_inicial();
 

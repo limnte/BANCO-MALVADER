@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "io.h"
 #include <locale.h>
+#include "menus/menu.h"
 
 void salvar_contas_sem_arquivo(Conta *nova){
     FILE *fbancoucb;
@@ -10,12 +11,12 @@ void salvar_contas_sem_arquivo(Conta *nova){
     if(fbancoucb == NULL){
 		setlocale(LC_ALL, "pt_BR.UTF-8");
         printf("Erro ao abrir o arquivo de contas:Arquivo não encontrado.\n");
-        system("pause");
+        pausar_tela();
         getchar();
         exit(1);
     }
 
-    fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%d|%s|%s|%d|%lf\n",
+    fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%s|%s|%s|%d|%lf\n",
 		nova->Nome,
 		nova->Sobrenome,
 		nova->Dia,
@@ -41,13 +42,13 @@ void salvar_todas_contas(Conta nova[], int total_contas){
 
 	if(fbancoucb == NULL){
 		printf("ERRO CRITICO: não foi possivel re-salvar os dados das contas.\n");
-		system("Pause");
+		pausar_tela();
 		return;
 	}
 
 	//loop nas contas da memoria e salvar elas e pah
 	for(int i = 0; i < total_contas; i++){
-		fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%d|%s|%s|%d|%lf\n",
+		fprintf(fbancoucb, "%s|%s|%d|%d|%d|%s|%s|%s|%d|%s|%s|%s|%d|%lf\n",
 			nova[i].Nome,
 			nova[i].Sobrenome,
 			nova[i].Dia,
