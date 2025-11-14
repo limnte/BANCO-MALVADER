@@ -30,7 +30,7 @@ void fazer_deposito(){
     //atualiza o saldo na memoria
     nova[i_contalogada].Saldo += valor_deposito;
     //salva as contas na memoria de volta para o arquivo
-    salvar_todas_contas(nova, total_contas);
+    salvar_todas_contas();
 
     printf("\nDeposito de R$%.2lf realizado com sucesso.\n", valor_deposito);
 
@@ -59,7 +59,7 @@ void fazer_saque(){
 
     //atualiza o saldo na memoria
     nova[i_contalogada].Saldo -= valor_saque;
-    salvar_todas_contas(nova, total_contas);
+    salvar_todas_contas();
 
     printf("\nSaque de R$%.2lf realizado com sucesso.\n", valor_saque);
 
@@ -134,7 +134,7 @@ void fazer_transferencia(){
         nova[i_contalogada].Saldo -= valor;
         nova[ind_dest].Saldo += valor;
 
-        salvar_todas_contas(nova, total_contas);
+        salvar_todas_contas();
 
         printf("\nTransferencia realizada com sucesso!");
         salvar_operacao(nova[i_contalogada].Cpf, "TRANSFERENCIA", valor);

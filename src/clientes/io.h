@@ -18,13 +18,15 @@ typedef struct{
 	double Saldo;
 }Conta;
 
-extern Conta nova[200];
+extern Conta *nova;
 extern int total_contas;
+extern int capacidade_contas; //Variavel para controlar a memoria alocada
 extern int i_contalogada;
 
-void criar_conta(Conta *nova, int *total_contas);
-void ler_contas(Conta *nova, int *total_contas);
+void criar_conta(int *total_contas);
+void ler_contas(int *total_contas);
 void salvar_contas_sem_arquivo(Conta *nova);
-void salvar_todas_contas(Conta nova[], int total_contas);
+void salvar_todas_contas();
+void liberar_memoria(); //função para o free
 
 #endif

@@ -18,7 +18,7 @@ static int tudo_digito(const char* str){
 
 
 
-void criar_conta(Conta nova[], int *total_contas){
+void criar_conta(int *total_contas){
     setlocale(LC_ALL, "pt_BR.UTF-8");
 
 	int resposta;
@@ -26,12 +26,20 @@ void criar_conta(Conta nova[], int *total_contas){
     int conta_invalida = 0;
     char buffer_temp[30];//buffer temporario pra validar
 
-    Conta *conta_atual = &nova[*total_contas];
+    // --- BLOCO DE VERIFICAÇÃO DE CAPACIDADE ---
+    if (*total_contas >= capacidade_contas) {
+        int nova_capacidade = (capacidade_contas == 0) ? 10 : capacidade_contas * 2;
+        Conta *temp = (Conta*) realloc(nova, nova_capacidade * sizeof(Conta));
 
-    if(*total_contas >= 200){
-        printf("Erro: Limite maximo de contas atingido!\n");
-        return;
+        if (temp == NULL) {
+            printf("Erro: Nao ha mais memoria para cadastrar novas contas!\n");
+            return; // Aborta a criação da conta
+        }
+        nova = temp; // Atualiza o ponteiro global
+        capacidade_contas = nova_capacidade;
     }
+
+    Conta *conta_atual = &nova[*total_contas]; //ponteiro do proximo slot livre
 
     do{
         //dados pessoais

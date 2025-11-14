@@ -35,7 +35,7 @@ void salvar_contas_sem_arquivo(Conta *nova){
     fclose(fbancoucb);
 }
 
-void salvar_todas_contas(Conta nova[], int total_contas){
+void salvar_todas_contas(){
 	setlocale(LC_ALL, "pt_BR.UTF-8");
 	FILE *fbancoucb;
 	fbancoucb = fopen("data/clientes.txt", "w");

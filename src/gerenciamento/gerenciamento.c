@@ -105,7 +105,7 @@ void alterar_dados(){
     } while(op!=0);
 
     if(dados_alterados){
-        salvar_todas_contas(nova, total_contas);
+        salvar_todas_contas();
         printf("\nDados alterados e salvos com sucesso!");
     }else{
         printf("Nenhuma alteração realizada.\n");
