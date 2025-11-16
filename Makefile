@@ -12,5 +12,3 @@ $(EXEC): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
-	del /Q $(SRC_DIR)\*.o $(MENU_DIR)\*.o $(OUT_DIR)\*.exe 2>nul || echo Nada para limpar.
