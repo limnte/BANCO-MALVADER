@@ -14,13 +14,15 @@ void ler_contas(int *total_contas){
         return;
     }
 
-    //As strings estão sendo lidas com %[^|] para ler até o caractere '|', evitar problemas com espaços e garbage data
+    
     while(1){
+		//garante que existe espaço para a proxima conota
 		if(*total_contas>=capacidade_contas){
-			//dobra a capacidade ou inicia com 10 se for 0
+			//Se atingir o limite dobra a capacidade. inicia com 10 se for 0
 			int nova_capacidade = (capacidade_contas == 0) ? 10 : capacidade_contas * 2;
 			Conta *temp = (Conta*) realloc(nova, nova_capacidade * sizeof(Conta));
 
+			//Se falha na alocação
 			if(temp == NULL){
 				printf("ERRO FATAL: Falha ao realocar memoria durante leitura.\n");
 				liberar_memoria();
@@ -31,6 +33,7 @@ void ler_contas(int *total_contas){
 			capacidade_contas = nova_capacidade;
 		}
 
+		//lidas com %[^|] para ler até o caractere '|'
 		int resultado = fscanf(fbancoucb, " %[^|]|%[^|]|%d|%d|%d|%[^|]|%[^|]|%[^|]|%d|%[^|]|%[^|]|%[^|]|%d|%lf",
 			nova[*total_contas].Nome,
 			nova[*total_contas].Sobrenome,

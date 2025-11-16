@@ -8,10 +8,10 @@
 #include "clientes/io.h"
 #include "clientes/verificacao.h"
 
-Conta *nova = NULL; //ponteiro, começa como null
-int capacidade_contas = 0;
-int total_contas = 0; //declaração da variavel global de total de contas
-int i_contalogada = -1; //variavel global que guarda o indice da conta logada, -1 = ninguem estiver logado
+Conta *nova = NULL; //ponteiro para o vetor dinamico na memoria, começa como null
+int capacidade_contas = 0; //Quantidade de contas CASO iniciado o programa sem contas criadas.
+int total_contas = 0; //Quantidade de contas que cabem na memoria alocada
+int i_contalogada = -1; //Indice conta logada; -1 = ninguem estiver logado
 
 void liberar_memoria(){
     free(nova);
@@ -73,9 +73,10 @@ int main(){
 
         switch(op_inicial){
             case 1:
-                i_contalogada = fazer_login(nova, total_contas);
+                i_contalogada = fazer_login(nova, total_contas);//o retorno do indice da conta logada fica = a i_conta logada, exemplo 0 para gabe, 1 para lucas, 2 para eduardi
 
                 if(i_contalogada != -1){
+                    //caso sucesso, manda pro menu principal
                     printf("Login realizado com sucesso! Bem-vindo, %s.\n", nova[i_contalogada].Nome);
                     pausar_tela();
                     loop_menu_principal();

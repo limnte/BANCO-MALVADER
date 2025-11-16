@@ -25,7 +25,8 @@ void consultar_dados(){
 
     printf("\n====== Consulta de dados =======\n");   
     printf("Nome: %s %s\n", logada->Nome, logada->Sobrenome);
-    printf("CPF: %.3s.%.3s.%.3s-%.2s\n", logada->Cpf, logada->Cpf+3, logada->Cpf+6,logada->Cpf+9); //mostrar o cpf formatodo
+    //formata o cpf em (xxx.xxx.xxx-xx); Usa as substrings do ponteiro
+    printf("CPF: %.3s.%.3s.%.3s-%.2s\n", logada->Cpf, logada->Cpf+3, logada->Cpf+6,logada->Cpf+9);
     printf("Data de nascimento: %02d/%02d/%02d\n", logada->Dia, logada->Mes, logada->Ano);
     printf("Conta: %s-%d\n", logada ->Agencia, logada->Conta);
 
@@ -78,7 +79,7 @@ void alterar_dados(){
 
                     if(strlen(buffer_temp) != 8 || !tudo_digito(buffer_temp)){
                         printf("Erro: O CEP deve conter 8 digitos. Tente novamente!");
-                        cep_invalido = 1;
+                        cep_invalido = 1;//Garante que o CEP tenha os 8 digitos
                     }else{
                         cep_invalido = 0;
                         strcpy(logada->Cep, buffer_temp); //salva o Cep valido na conta logada.
@@ -143,12 +144,15 @@ void excluir_conta(){
             for(int i = i_contalogada; i<total_contas - 1; i++){
                 nova[i] = nova[i+1];
             }
+            //caso senha da conta estar correta, procura a conta logada no total de contas;
 
             total_contas--;
             salvar_todas_contas(nova, total_contas);
+            //apaga a conta e salva
             printf("Conta excluida com sucesso.\n");
 
             i_contalogada=-1;
+            //força logout
         case 0:
             return;
         default:
@@ -160,6 +164,8 @@ void excluir_conta(){
 void listar_contas_por_nome(){
     Conta copia_contas[200];
     memcpy(copia_contas, nova, total_contas *sizeof(Conta));
+    //copia as contas de nova para copia_contas, e mostra o total de contas em total_contas
+
 
     quicksort_nome(copia_contas, 0, total_contas - 1);
 
@@ -181,6 +187,7 @@ void listar_contas_por_nome(){
 void listar_contas_por_conta() {
     Conta copia_contas[200];
     memcpy(copia_contas, nova, total_contas * sizeof(Conta));
+    //copia as contas de nova para copia_contas, e mostra o total de contas em total_contas
 
     quicksort_conta(copia_contas, 0, total_contas - 1);
 

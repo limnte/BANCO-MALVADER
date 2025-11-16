@@ -65,7 +65,7 @@ void criar_conta(int *total_contas){
 
             if(strlen(buffer_temp) != 11 || !tudo_digito(buffer_temp)){
                 printf("Erro: O CPF deve conter todos os 11 digitos numericos!.\n");
-                cpf_invalido = 1; //verifica se o cpf tem os 11 digitos ou algo que não seja numerico
+                cpf_invalido = 1; //Garante que o cpf tenha os 11 digitos ou algo que não seja numerico
             }else if(cpf_existe(buffer_temp, nova, *total_contas)){
                 printf("Erro: CPF invalido! Tente novamente.\n");
                 cpf_invalido = 1; //verifica se o cpf já existe
@@ -98,7 +98,7 @@ void criar_conta(int *total_contas){
 
             if(strlen(buffer_temp) != 8 || !tudo_digito(buffer_temp)){
                 printf("Erro: o CEP deve conter exatemente 8 digitos numericos. Tente novamente!\n");
-                cep_invalido = 1;
+                cep_invalido = 1;//garante que o CEP tenha os 8 digitos
             }else{
                 cep_invalido = 0;
                 strcpy(conta_atual->Cep, buffer_temp); //copia o cep se for valido
